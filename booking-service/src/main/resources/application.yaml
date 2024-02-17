@@ -1,0 +1,11 @@
+spring:
+  jpa:
+    show-sql: true
+
+logging:
+  level:
+    root: OFF
+    org:
+      springframework:
+        web: ERROR
+

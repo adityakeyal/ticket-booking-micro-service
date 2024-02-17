@@ -26,6 +26,5 @@ erDiagram
         string availability
     }
     THEATER_OWNER ||--o{ THEATER : owns
-    THEATER ||--o{ SCREEN : contains
-    SCREEN ||--o{ SHOWS : show
+    
 </div>

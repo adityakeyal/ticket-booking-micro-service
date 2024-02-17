@@ -11,5 +11,5 @@ import java.util.UUID;
  * @param seatIds - The seats of the show which need to be blocked
  *
  */
-public record BookingInfo(@NotNull UUID showId, @NotNull List<UUID> seatIds) {
+public record BookingInfo(@NotNull(message = "NotNull.booking.showId") UUID showId, @NotNull(message = "NotNull.booking.seatIds") List<UUID> seatIds) {
 }

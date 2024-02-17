@@ -2,7 +2,7 @@
 erDiagram
 
     BOOKING {
-        id uuid
+        uuid id
         uuid show_id
         uuid user_id
         date show_date
@@ -11,7 +11,7 @@ erDiagram
         varchar status
     }
     BOOKING_DETAILS {
-        id uuid
+        uuid id
         uuid booking_id
         uuid seat_id
 

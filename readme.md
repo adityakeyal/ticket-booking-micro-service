@@ -1,5 +1,3 @@
-# Booking-Service
-
 ## Assumptions 
 The below features required for any standard microservice has not been considered:
  - Spring Security
@@ -63,33 +61,3 @@ For all implementation the below are mandatory
 All applications will be deployed on Kubernetes and packaged as Docker images
 
 
-## For Running the app on local
-### Step 1: run the below command inside the project folder:
-
-```
-mvn clean install
-```
-It will generate a target folder with application jar in it
-
-
-### Step 2: Run the below command to tag and build the docker image
-
-```
-docker build --build-arg="registry=docker.io/library" --build-arg="version=0.0.1-SNAPSHOT" -t <your_dockerhub_id>/<app_name> -f src/main/docker/Dockerfile .
-```
-e.g. 
-```
-docker build --build-arg="registry=docker.io/library" --build-arg="version=0.0.1-SNAPSHOT"  -t online-movie-app/booking-service -f src/main/docker/Dockerfile .
-```
-
-Don't miss the dot in the end of above mentioned command.
-
-### Step 3: To run the app on your local docker instance execute below command
-```
-docker run -p 8080:8080 <your_dockerhub_id>/blogging-app
-```
-
-### Step 4: Now you can access the app on your browser or rest client on localhost:8080. Sample endpoint is 
-```
-GET: localhost:8080/posts
-```

@@ -56,12 +56,12 @@ public class GlobalExceptionAdvice {
      * Global message handling for {@link  UnableToLockSeatException}
      *
      * @param exception - The instance of {@link  UnableToLockSeatException}
-     * @return HTTP Status Code - 422 , Body - JSON with code and message
+     * @return HTTP Status Code - 400 , Body - JSON with code and message
      */
     @ExceptionHandler(value = MethodArgumentNotValidException.class)
     public ResponseEntity<ErrorResponse> exception(MethodArgumentNotValidException exception) {
 
-        var errorResponse = new ErrorResponse(exception.getMessage(),exception.getMessage());
+        var errorResponse = new ErrorResponse("400",exception.getMessage());
 
         return new ResponseEntity(errorResponse,
                 new HttpHeaders(), HttpStatus.UNPROCESSABLE_ENTITY);
