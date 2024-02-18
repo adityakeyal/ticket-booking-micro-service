@@ -1,5 +1,6 @@
 package com.sapient.booking.dto;
 
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
 import java.util.List;
@@ -11,5 +12,5 @@ import java.util.UUID;
  * @param seatIds - The seats of the show which need to be blocked
  *
  */
-public record BookingInfo(@NotNull(message = "NotNull.booking.showId") UUID showId, @NotNull(message = "NotNull.booking.seatIds") List<UUID> seatIds) {
+public record BookingInfo(@NotNull(message = "NotNull.booking.showId") UUID showId, @NotNull(message = "NotNull.booking.seatIds") @NotEmpty(message = "UnableToLock.insufficientInformation")  List<UUID> seatIds) {
 }

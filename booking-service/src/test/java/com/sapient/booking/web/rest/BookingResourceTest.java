@@ -62,9 +62,6 @@ class BookingResourceTest {
         final String json = gson.toJson(new BookingInfo(UUID.randomUUID(), List.of()));
 
 
-
-        Mockito.when(this.bookingService.booking(Mockito.any(),Mockito.any())).thenThrow(new UnableToLockSeatException("UnableToLock.insufficientInformation"));
-
         this.mockMvc.
                 perform(MockMvcRequestBuilders
                         .post("/v1/booking/11111111-1111-1111-1111-111111111111")
@@ -73,15 +70,14 @@ class BookingResourceTest {
                         .content(json)
                 )
                 .andExpect(MockMvcResultMatchers.status().is(422))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.code").value("UnableToLock.insufficientInformation"))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.message").value("Cannot perform booking. Insufficient information provided"));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.code").value("400"));
     }
     @Test
     public void testControllerIncorrectData() throws Exception {
 
         Gson gson = new Gson();
 
-        final String json = gson.toJson(new BookingInfo(UUID.randomUUID(), List.of()));
+        final String json = gson.toJson(new BookingInfo(UUID.randomUUID(), List.of(UUID.randomUUID())));
 
 
 
@@ -103,7 +99,7 @@ class BookingResourceTest {
 
         Gson gson = new Gson();
 
-        final String json = gson.toJson(new BookingInfo(UUID.randomUUID(), List.of()));
+        final String json = gson.toJson(new BookingInfo(UUID.randomUUID(), List.of(UUID.randomUUID())));
 
 
 
@@ -128,7 +124,7 @@ class BookingResourceTest {
 
         Gson gson = new Gson();
 
-        final String json = gson.toJson(new BookingInfo(UUID.randomUUID(), List.of()));
+        final String json = gson.toJson(new BookingInfo(UUID.randomUUID(), List.of(UUID.randomUUID())));
 
         Booking booking = new Booking(); booking.setId(UUID.fromString("11111111-1111-1111-1111-111111111111"));
         booking.setStatus(BookingStatus.CONFIRMED);

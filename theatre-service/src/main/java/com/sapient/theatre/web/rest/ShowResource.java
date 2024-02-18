@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Rest Controller for managing {@link Show} domain
@@ -56,6 +57,24 @@ public class ShowResource {
         return this.showService.fetchShowsForMovie(city, movieId, playingOn);
     }
 
+
+    /**
+     *
+     * @param id - UUID of the show
+     * the body with {@link ShowInformation} with status {@code 200 (OK)} or with status {@code 404 (Not Found)}
+     */
+    @Operation(
+            summary = "Get details of the current show",
+            description = "gets the details of the current show")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "successful operation"),
+            @ApiResponse(responseCode = "404", description = "show not found" ,  content = { @Content(mediaType = "application/json",
+                    schema = @Schema(implementation = String.class))})
+    })
+    @GetMapping(value = "/shows/{id}")
+    public ShowInformation getShowInformation(@PathVariable UUID id)  {
+        return this.showService.findShowById(id);
+    }
 
 
 

@@ -27,7 +27,9 @@ public interface ShowRepository extends JpaRepository<Show, UUID> {
      * @param showDate
      * @return
      */
-    @Query("select new com.sapient.theatre.dto.ShowInformation(s.screen.theatre.name, s.screen.name, s.startTime) from Show s where s.screen.theatre.city = :city and s.playingOn=:showDate and s.movieId=:movieId and s.availability='Y' " )
+    @Query("select new com.sapient.theatre.dto.ShowInformation(s.screen.theatre.owner.name, s.screen.theatre.name, s.screen.name, s.startTime) from Show s where s.screen.theatre.city = :city and s.playingOn=:showDate and s.movieId=:movieId and s.availability='Y' " )
     Optional<List<ShowInformation>> findShowsByCityByMoviePlayingOn(String city, UUID movieId, LocalDate showDate);
 
+    @Query("select new com.sapient.theatre.dto.ShowInformation(s.screen.theatre.owner.name, s.screen.theatre.name, s.screen.name, s.startTime) from Show s where s.id=:id " )
+    Optional<ShowInformation> findShowInformationById(UUID id);
 }

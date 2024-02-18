@@ -7,6 +7,12 @@ package com.sapient.booking.exception;
 public class NoRecordFoundException extends RuntimeException {
 
     public NoRecordFoundException() {
-        super("Exception.notFound");
+        this("Exception.notFound");
     }
+
+    public NoRecordFoundException(String message) {
+        super(message);
+    }
+
+
 }

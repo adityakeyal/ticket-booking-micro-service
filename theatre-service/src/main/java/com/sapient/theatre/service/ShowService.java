@@ -1,5 +1,6 @@
 package com.sapient.theatre.service;
 
+import com.sapient.theatre.data.domain.Show;
 import com.sapient.theatre.data.repository.ShowRepository;
 import com.sapient.theatre.dto.ShowInformation;
 import com.sapient.theatre.exception.InvalidInputException;
@@ -53,9 +54,13 @@ public class ShowService {
     }
 
 
-
-
-
-
-
+    /**
+     * Returns the showinformation given a show id
+     * @param id
+     * @return
+     */
+    public ShowInformation findShowById(UUID id) {
+        final Optional<ShowInformation> showInformation = this.showRepository.findShowInformationById(id);
+        return showInformation.orElseThrow(() -> new NoRecordFoundException());
+    }
 }

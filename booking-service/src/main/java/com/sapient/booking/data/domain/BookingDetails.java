@@ -19,7 +19,6 @@ public class BookingDetails extends AbstractAuditingEntity {
         id = UUID.randomUUID();
     }
     public BookingDetails(SeatInventory seat){
-        System.out.println(seat);
         this.id = UUID.randomUUID();
         this.seat = seat;
     }

@@ -9,3 +9,7 @@ logging:
       springframework:
         web: ERROR
 
+ticket:
+  service:
+    theatre-service:
+      url: http://localhost:8080/

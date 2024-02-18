@@ -34,7 +34,7 @@ class ShowResourceTest {
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         final LocalDate parse = LocalDate.parse("2024-02-17", formatter);
-        final List<ShowInformation> showInformations = List.of(new ShowInformation("Theatre 1", "Screen 1", LocalDateTime.now()), new ShowInformation("Theatre 1", "Screen 2", LocalDateTime.now()));
+        final List<ShowInformation> showInformations = List.of(new ShowInformation("Theatre Owner","Theatre 1", "Screen 1", LocalDateTime.now()), new ShowInformation("Theatre Owner", "Theatre 1", "Screen 2", LocalDateTime.now()));
 
         Mockito.when(this.showService.fetchShowsForMovie("KOLKATA", "11111111-1111-1111-1111-111111111111", parse)).thenReturn(showInformations);
         this.mockMvc.perform(MockMvcRequestBuilders.get("/v1/shows/KOLKATA/11111111-1111-1111-1111-111111111111/2024-02-17")).andExpect(MockMvcResultMatchers.status().isOk()).andExpect(MockMvcResultMatchers.jsonPath("$.length()").value(2));

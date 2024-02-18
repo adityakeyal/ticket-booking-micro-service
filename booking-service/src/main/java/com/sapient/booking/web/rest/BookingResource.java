@@ -58,8 +58,8 @@ public class BookingResource {
                     schema = @Schema(implementation = ErrorResponse.class))}),
     })
     @PostMapping("/booking/{id}")
-    public Booking bookTicket(@RequestBody @Valid BookingInfo bookingInfo, @PathVariable UUID id) {
-        return this.bookingResource.booking(bookingInfo, id);
+    public Booking bookTicket(@PathVariable UUID id, @RequestBody @Valid BookingInfo bookingInfo) {
+        return this.bookingResource.booking(id, bookingInfo);
     }
 
 
